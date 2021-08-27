@@ -1,4 +1,6 @@
 from sympy.algebras.quaternion import Quaternion
+from sympy import gcd_list
+from sympy import Poly, Symbol
 
 import numpy as np
 import math
@@ -29,7 +31,7 @@ class qpoly:
                 self.coef = [random.choice(arr) for i in arr]
 
     def __str__(self):
-        list_r = ['('+str(item)+')*x^'+ str(len(self.coef)-n-1) + '\n' for n,item in enumerate(self.coef)]
+        list_r = ['('+str(item)+')*x**'+ str(len(self.coef)-n-1) + '\n' for n,item in enumerate(self.coef)]
         return ''.join(list_r)
 
     def __add__ (self, other):
@@ -117,11 +119,36 @@ class qpoly:
 
             return qpoly(temp_list)
 
+    def has_no_spherical_roots(self):
+        
+        return self.gcd_of_four_pol() == 1
+
+    def extract_four_pol(self):
+
+        fc = [item._a for item in self.coef]
+        fi = [item._b for item in self.coef]
+        fj = [item._c for item in self.coef]
+        fk = [item._d for item in self.coef]
+
+        #print(fk)
+
+        return [fc, fi, fj, fk]
+
+    def gcd_of_four_pol(self):
+
+        four_pol = self.extract_four_pol()
+
+        x = Symbol('x')
+
+        arr = [Poly(item, x).as_expr() for item in four_pol]
+
+        #print(arr)
+
+        return gcd_list(arr)
 
 
+        
 
-
-    
 
 
 if __name__ == "__main__":
@@ -130,11 +157,11 @@ if __name__ == "__main__":
 
     # print((Quaternion(1,1,1,1)  )
 
-    a = qpoly([[1,1,1,1], [0,0,0,0]], 'R', 3)
+    a = qpoly([[1,0,1,1], [0,0,0,0]], 'R', 20)
     b = qpoly([[1,1,1,1], [0,0,0,0]], 'R', 2)
 
-    print( a , '\n')
-    print( b , '\n' )
+    # print( a , '\n')
+    # print( b , '\n' )
 
     # print( a - b  , '\n')
 
@@ -142,8 +169,12 @@ if __name__ == "__main__":
 
     # print(a * Quaternion(2,0,0,0))
 
-    print(a * b)
+    #print(a * b)
 
+    # x = Symbol('x')
+    # print(Poly([1,2,3,4,5,6], x ))
+
+    print(a.gcd_of_four_pol() != 1)
 
 
 
