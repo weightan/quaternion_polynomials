@@ -39,7 +39,6 @@ def make_poly_q(power, coeficients = [np.array([1,0,0,0]), np.array([0,1,0,0]),n
 
     return qpoly
 
-
 # f (t) = a(t) + ib(t) + j(c(t) − id(t))
 # returns polinoms a, b, c, d
 def make_four_arr_from_qp(quatp):

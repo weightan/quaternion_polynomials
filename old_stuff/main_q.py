@@ -369,7 +369,7 @@ def testCompM():
 if __name__ == "__main__":
     #run()
     #testCompM()
-    runTestForAll()
+    #runTestForAll()
 
 
     
