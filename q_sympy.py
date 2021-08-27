@@ -28,7 +28,7 @@ class qpoly:
             else :
                 self.coef = [random.choice(arr) for i in arr]
 
-    def  __str__(self):
+    def __str__(self):
         list_r = ['('+str(item)+')*x^'+ str(len(self.coef)-n-1) + '\n' for n,item in enumerate(self.coef)]
         return ''.join(list_r)
 
@@ -92,6 +92,35 @@ class qpoly:
 
                 return qpoly(temp_list)
 
+    def __mul__ (self, other): 
+
+        if  isinstance(other, Quaternion ) :
+
+            temp_list = [ item * other for item in self.coef]
+
+            return qpoly(temp_list)
+
+        elif  isinstance(other, qpoly) :
+            len1 = len(self.coef) 
+            len2 = len(other.coef) 
+
+            temp_list = [Quaternion(0, 0, 0, 0)]*(len1+len2 - 1)
+
+            for t in range(len1+ len2 - 2, -1, -1):
+                c = Quaternion(0, 0, 0, 0)
+
+                for i in range(0, t+1):
+                    if i < len1 and t - i < len2:
+                        c  = c + self.coef[i] * other.coef[t - i]
+
+                temp_list[t] = c
+
+            return qpoly(temp_list)
+
+
+
+
+
     
 
 
@@ -101,15 +130,21 @@ if __name__ == "__main__":
 
     # print((Quaternion(1,1,1,1)  )
 
-    a = qpoly([[1,1,1,1], [0,0,0,0]], 'R', 5)
-    b = qpoly([[1,1,1,1], [0,0,0,0]], 'R', 3)
+    a = qpoly([[1,1,1,1], [0,0,0,0]], 'R', 3)
+    b = qpoly([[1,1,1,1], [0,0,0,0]], 'R', 2)
 
     print( a , '\n')
     print( b , '\n' )
 
-    print( a - b  , '\n')
+    # print( a - b  , '\n')
 
-    print( b - a )
+    # print( b - a )
+
+    # print(a * Quaternion(2,0,0,0))
+
+    print(a * b)
+
+
 
 
 
