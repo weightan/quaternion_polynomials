@@ -10,7 +10,7 @@ from tqdm import tqdm
 from datetime import datetime
 
 
-
+import itertools
 
 class qpoly:
     q_zero = Quaternion(0, 0, 0, 0)
@@ -120,7 +120,7 @@ class qpoly:
             return qpoly(temp_list)
 
     def has_no_spherical_roots(self):
-        
+
         return self.gcd_of_four_pol() == 1
 
     def extract_four_pol(self):
@@ -147,17 +147,13 @@ class qpoly:
         return gcd_list(arr)
 
 
-        
-
-
-
-if __name__ == "__main__":
+def test():
 
     #print(isinstance(Quaternion(1,1,1,1), Quaternion) )
 
     # print((Quaternion(1,1,1,1)  )
 
-    a = qpoly([[1,0,1,1], [0,0,0,0]], 'R', 20)
+    a = qpoly([[1,1,1,1], [0,0,0,0]], 'R', 2)
     b = qpoly([[1,1,1,1], [0,0,0,0]], 'R', 2)
 
     # print( a , '\n')
@@ -174,7 +170,31 @@ if __name__ == "__main__":
     # x = Symbol('x')
     # print(Poly([1,2,3,4,5,6], x ))
 
-    print(a.gcd_of_four_pol() != 1)
+    c = 0
+    n = 100
+    arr_res = []
+
+    for p1 in itertools.product([0,1],[0,1],[0,1],[0,1]):
+        for p2 in itertools.product([0,1],[0,1],[0,1],[0,1]):
+            c = 0
+
+            for i in range(n):
+                a = qpoly([p1, p2], 'R', 20)
+
+                if a.gcd_of_four_pol() != 1 :
+                    c += 1
+
+            arr_res.append([p1, p2, c, c/n ])
+
+    arr_res = sorted(arr_res, key = lambda x: x[3])
+
+    for i in arr_res:
+        print(i)
+
+
+if __name__ == "__main__":
+
+    test()
 
 
 
