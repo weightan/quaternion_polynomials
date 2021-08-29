@@ -183,6 +183,15 @@ class qpoly:
 
         return gcd_list(arr)
 
+    def conjugate(self):
+
+        return [item._eval_conjugate() for item in self.coef]
+
+    def F_characteristic_poly(self):
+
+        pass
+
+
 
 def test():
 

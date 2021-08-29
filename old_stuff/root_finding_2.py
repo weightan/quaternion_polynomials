@@ -15,6 +15,114 @@ import matplotlib.pyplot as plt
 
 from numpy import linalg as LA
 
+
+valies_for_choice = [
+[(1, 0, 0, 0), (1, 1, 1, 0) ],
+[(0, 0, 0, 1), (1, 0, 1, 1) ],
+[(0, 0, 1, 1), (1, 0, 0, 1) ],
+[(0, 1, 1, 1), (1, 0, 0, 0) ],
+[(0, 1, 1, 1), (1, 1, 1, 0) ],
+[(0, 0, 1, 0), (0, 1, 0, 0) ],
+[(0, 0, 1, 0), (1, 0, 1, 0) ],
+[(0, 0, 1, 1), (1, 1, 0, 0) ],
+[(0, 1, 0, 0), (0, 1, 0, 1) ],
+[(0, 1, 0, 0), (1, 0, 0, 1) ],
+[(0, 1, 0, 1), (1, 1, 0, 0) ],
+[(0, 1, 0, 1), (1, 1, 1, 0) ],
+[(1, 0, 0, 0), (1, 0, 1, 1) ],
+[(0, 0, 0, 1), (0, 1, 0, 1) ],
+[(0, 0, 0, 1), (1, 0, 1, 0) ],
+[(0, 0, 0, 1), (1, 1, 0, 0) ],
+[(0, 0, 1, 0), (0, 1, 1, 1) ],
+[(0, 0, 1, 0), (1, 0, 0, 0) ],
+[(0, 0, 1, 0), (1, 0, 1, 1) ],
+[(0, 0, 1, 0), (1, 1, 0, 0) ],
+[(0, 0, 1, 1), (0, 1, 0, 0) ],
+[(0, 0, 1, 1), (1, 0, 1, 0) ],
+[(0, 0, 1, 1), (1, 1, 1, 1) ],
+[(0, 1, 0, 0), (0, 1, 1, 0) ],
+[(0, 1, 0, 0), (1, 0, 0, 0) ],
+[(0, 1, 0, 1), (0, 1, 1, 1) ],
+[(0, 1, 0, 1), (1, 0, 0, 1) ],
+[(0, 1, 0, 1), (1, 1, 1, 1) ],
+[(0, 1, 1, 0), (1, 1, 0, 1) ],
+[(1, 0, 0, 0), (1, 1, 0, 0) ],
+[(1, 0, 0, 1), (1, 1, 0, 1) ],
+[(0, 0, 0, 1), (0, 1, 1, 0) ],
+[(0, 0, 0, 1), (1, 1, 1, 0) ],
+[(0, 0, 1, 0), (1, 1, 0, 1) ],
+[(0, 0, 1, 0), (1, 1, 1, 0) ],
+[(0, 0, 1, 1), (0, 1, 0, 1) ],
+[(0, 0, 1, 1), (0, 1, 1, 0) ],
+[(0, 0, 1, 1), (1, 0, 0, 0) ],
+[(0, 0, 1, 1), (1, 0, 1, 1) ],
+[(0, 0, 1, 1), (1, 1, 1, 0) ],
+[(0, 1, 0, 0), (1, 1, 0, 0) ],
+[(0, 1, 1, 0), (1, 1, 1, 0) ],
+[(0, 1, 1, 1), (1, 0, 1, 1) ],
+[(0, 1, 1, 1), (1, 1, 0, 0) ],
+[(1, 0, 1, 0), (1, 1, 0, 0) ],
+[(1, 1, 0, 1), (1, 1, 1, 1) ],
+[(0, 0, 0, 1), (0, 1, 0, 0) ],
+[(0, 0, 0, 1), (1, 0, 0, 1) ],
+[(0, 0, 1, 1), (0, 1, 1, 1) ],
+[(0, 1, 0, 0), (1, 0, 1, 1) ],
+[(0, 1, 0, 0), (1, 1, 1, 1) ],
+[(0, 1, 0, 1), (1, 0, 0, 0) ],
+[(0, 1, 1, 0), (0, 1, 1, 1) ],
+[(0, 1, 1, 0), (1, 0, 0, 1) ],
+[(0, 1, 1, 0), (1, 1, 1, 1) ],
+[(0, 1, 1, 1), (1, 0, 1, 0) ],
+[(1, 0, 0, 0), (1, 1, 1, 1) ],
+[(1, 0, 1, 0), (1, 1, 1, 0) ],
+[(1, 0, 1, 1), (1, 1, 0, 1) ],
+[(0, 0, 0, 1), (0, 1, 1, 1) ],
+[(0, 0, 0, 1), (1, 1, 0, 1) ],
+[(0, 0, 1, 0), (0, 1, 0, 1) ],
+[(0, 1, 0, 0), (0, 1, 1, 1) ],
+[(0, 1, 0, 1), (0, 1, 1, 0) ],
+[(0, 1, 0, 1), (1, 0, 1, 0) ],
+[(0, 1, 1, 0), (1, 0, 0, 0) ],
+[(0, 1, 1, 0), (1, 0, 1, 1) ],
+[(0, 1, 1, 1), (1, 1, 1, 1) ],
+[(1, 0, 0, 0), (1, 1, 0, 1) ],
+[(1, 0, 0, 1), (1, 0, 1, 0) ],
+[(1, 0, 0, 1), (1, 0, 1, 1) ],
+[(1, 0, 0, 1), (1, 1, 0, 0) ],
+[(1, 0, 1, 0), (1, 1, 0, 1) ],
+[(1, 1, 0, 0), (1, 1, 1, 1) ],
+[(1, 1, 0, 1), (1, 1, 1, 0) ],
+[(1, 1, 1, 0), (1, 1, 1, 1) ],
+[(0, 0, 0, 1), (0, 0, 1, 1) ],
+[(0, 0, 0, 1), (1, 0, 0, 0) ],
+[(0, 0, 0, 1), (1, 1, 1, 1) ],
+[(0, 0, 1, 0), (0, 0, 1, 1) ],
+[(0, 0, 1, 0), (1, 0, 0, 1) ],
+[(0, 0, 1, 1), (1, 1, 0, 1) ],
+[(0, 1, 0, 1), (1, 1, 0, 1) ],
+[(0, 1, 1, 0), (1, 1, 0, 0) ],
+[(0, 1, 1, 1), (1, 0, 0, 1) ],
+[(1, 0, 0, 0), (1, 0, 0, 1) ],
+[(1, 0, 0, 1), (1, 1, 1, 1) ],
+[(1, 0, 1, 0), (1, 0, 1, 1) ],
+[(1, 1, 0, 0), (1, 1, 0, 1) ],
+[(1, 1, 0, 0), (1, 1, 1, 0) ],
+[(0, 1, 0, 0), (1, 0, 1, 0) ],
+[(0, 1, 0, 0), (1, 1, 0, 1) ],
+[(0, 1, 0, 0), (1, 1, 1, 0) ],
+[(0, 1, 1, 0), (1, 0, 1, 0) ],
+[(0, 1, 1, 1), (1, 1, 0, 1) ],
+[(1, 0, 1, 0), (1, 1, 1, 1) ],
+[(1, 0, 1, 1), (1, 1, 0, 0) ],
+[(1, 0, 1, 1), (1, 1, 1, 0) ],
+[(1, 0, 1, 1), (1, 1, 1, 1) ],
+[(0, 1, 0, 1), (1, 0, 1, 1) ],
+[(0, 0, 0, 1), (0, 0, 1, 0) ],
+[(0, 0, 1, 0), (0, 1, 1, 0) ],
+[(0, 0, 1, 0), (1, 1, 1, 1) ],
+[(1, 0, 0, 1), (1, 1, 1, 0) ],
+[(1, 0, 0, 0), (1, 0, 1, 0) ]]
+
 #val = np.linalg.eigvals(M)
 
 #TODO test from article, Newton method, 3d display
@@ -123,16 +231,23 @@ def calc_roots_of_q_poly(quat_poly_orig):
     roots_ffc = np.sort_complex( np.roots(ffc) ) 
     roots_by_one = []
 
+    # for i in roots_ffc:
+    #     if np.conjugate(i) not in roots_ffc:
+    #         roots_by_one.append(i)
+
     for i in roots_ffc:
         if not (np.conjugate(i) in roots_by_one)  and not (i in roots_by_one):
-            roots_by_one.append(i)
+            roots_by_one.append(i.real + 1j*i.imag)
 
     q_roots = []        
 
     for item in roots_by_one:
         q_roots.append(h_pol(item, quat_poly_orig))
 
-    return q_roots
+    if not (type(gcd) is list):
+        return q_roots
+    else:
+        return []
 
 
 def eval_qp(polq, val):
@@ -158,19 +273,19 @@ def eval_qp(polq, val):
 def log_dansity_map(val, max_count):
     max_count +=1
     brightness = math.log(val) / math.log(max_count)
-    gamma = 2.2
+    gamma = 3.2
     brightness = math.pow(brightness, 1/gamma)
 
     return brightness
 
 def run(display):
 
-    N = 4096 #4096
+    N = 3000 #4096
     scal = N * 4  #/3.7
-    iters = 10_000
+    iters = 30_000
     #coeficients = [np.array([1,0,0,0]), np.array([0,1,0,0]),np.array([0,0,1,0]), np.array([0,0,0,1])]
-
-    coeficients = [np.array([1,1,0,1])/math.sqrt(3), np.array([1,0,0,1])/math.sqrt(2)]
+    #(0, 1, 0, 0), (1, 0, 1, 0)
+    coeficients = [np.array([0, 1, 0, 0])/math.sqrt(1), np.array([1, 0, 1, 0])/math.sqrt(2)]
     sum = []
 
     grid = np.zeros((N, N), dtype = np.int32)
@@ -277,7 +392,7 @@ def display_with_plt(grid, N, spec):
     plt.close()
 
 def display_with_pil(grid, N, spec, coeficients):
-    cmap_name = "hot"
+    cmap_name = "copper_r"
     cmap = cm.get_cmap(cmap_name)
 
     coef = [list(i) for i in coeficients]
@@ -290,8 +405,10 @@ def display_with_pil(grid, N, spec, coeficients):
     max_count = np.max(grid)
     print("Max count:", max_count)
 
-    paint_zero_lvl = False
+    paint_zero_lvl = True
     mono_coloring = False
+
+    bac = (239, 235, 216)  
 
     im_arr = np.zeros((height, width, 3), dtype=np.uint8)
 
@@ -309,9 +426,9 @@ def display_with_pil(grid, N, spec, coeficients):
                     im_arr[y, x, 2] = int(255 * rgba[2])
             elif paint_zero_lvl:
                 rgba = cmap( 0 )
-                im_arr[y, x, 0] = int(255 * rgba[0])
-                im_arr[y, x, 1] = int(255 * rgba[1])
-                im_arr[y, x, 2] = int(255 * rgba[2])
+                im_arr[y, x, 0] = bac [0]
+                im_arr[y, x, 1] = bac [1]
+                im_arr[y, x, 2] = bac [2]
 
     im = Image.fromarray(im_arr)
     print(f"Saving image...{width}_{height}_spec_{spec}")
@@ -414,13 +531,13 @@ def test2():
 
 if __name__ == "__main__":
 
-    #run(display_with_pil)
+    run(display_with_pil)
 
     #test()
     #test2()
     #print(test_poly_4(1.0))
 
-    pole = quaternion.from_float_array(make_poly_q(10))
+    #pole = quaternion.from_float_array(make_poly_q(10))
 
 
 
